@@ -4,8 +4,16 @@ socket.on("message", (message) => {
   console.log(message);
 });
 
-document.querySelector("form").addEventListener("submit", (e) => {
+const form = document.querySelector("form");
+const formInput = form.querySelector("input");
+const formButton = form.querySelector("button");
+
+form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  //Disable button when a message in submitted
+  formButton.setAttribute("disabled", "disabled");
+
   const message = e.target.elements.message.value;
   socket.emit("sendMessage", message, (error) => {
     if (error) return console.log(error);
