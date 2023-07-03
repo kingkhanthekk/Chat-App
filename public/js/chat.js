@@ -22,6 +22,8 @@ document.querySelector("#share-location").addEventListener("click", () => {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     };
-    socket.emit("shareLocation", location);
+    socket.emit("shareLocation", location, () => {
+      console.log("Location shared!");
+    });
   });
 });
