@@ -15,8 +15,17 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-io.on("connection", () => {
+let count = 0;
+
+io.on("connection", (socket) => {
   console.log("WebSocket Server");
+
+  socket.emit("updateCount", count);
+
+  socket.on("increment", () => {
+    count++;
+    socket.emit("updateCount", count);
+  });
 });
 
 const port = process.env.PORT || 3000;
