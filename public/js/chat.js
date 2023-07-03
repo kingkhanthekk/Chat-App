@@ -18,6 +18,9 @@ form.addEventListener("submit", (e) => {
   socket.emit("sendMessage", message, (error) => {
     //Enable button when message is sent
     formButton.removeAttribute("disabled");
+    //Clear input and focus
+    formInput.value = "";
+    formInput.focus();
 
     if (error) return console.log(error);
 
