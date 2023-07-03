@@ -9,3 +9,15 @@ document.querySelector("form").addEventListener("submit", (e) => {
   const message = e.target.elements.message.value;
   socket.emit("sendMessage", message);
 });
+
+document.querySelector("#share-location").addEventListener("click", () => {
+  if (!navigator.geolocation) alert("Your browser doesn't support this!");
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    const location = {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    };
+    socket.emit("shareLocation", location);
+  });
+});
