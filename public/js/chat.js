@@ -16,6 +16,9 @@ form.addEventListener("submit", (e) => {
 
   const message = e.target.elements.message.value;
   socket.emit("sendMessage", message, (error) => {
+    //Enable button when message is sent
+    formButton.removeAttribute("disabled");
+
     if (error) return console.log(error);
 
     console.log("Message delivered!");
