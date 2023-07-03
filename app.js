@@ -19,6 +19,7 @@ io.on("connection", (socket) => {
   console.log("WebSocket Server");
 
   socket.emit("message", "Welcome!");
+  socket.broadcast.emit("message", "A new user has joined the chat!");
 
   socket.on("sendMessage", (message) => {
     io.emit("message", message);
