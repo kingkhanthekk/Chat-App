@@ -24,7 +24,8 @@ io.on("connection", (socket) => {
 
   socket.on("increment", () => {
     count++;
-    socket.emit("updateCount", count);
+    // socket.emit("updateCount", count);
+    io.emit("updateCount", count);
   });
 });
 
