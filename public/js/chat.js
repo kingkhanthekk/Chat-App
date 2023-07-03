@@ -28,7 +28,12 @@ form.addEventListener("submit", (e) => {
   });
 });
 
-document.querySelector("#share-location").addEventListener("click", () => {
+const locationButton = document.querySelector("#share-location");
+
+locationButton.addEventListener("click", () => {
+  //Disable when pressed
+  locationButton.setAttribute("disabled", "disabled");
+
   if (!navigator.geolocation) alert("Your browser doesn't support this!");
 
   navigator.geolocation.getCurrentPosition((position) => {
@@ -37,6 +42,9 @@ document.querySelector("#share-location").addEventListener("click", () => {
       longitude: position.coords.longitude,
     };
     socket.emit("shareLocation", location, () => {
+      //Enable button when location sent
+      locationButton.removeAttribute("disabled");
+
       console.log("Location shared!");
     });
   });
