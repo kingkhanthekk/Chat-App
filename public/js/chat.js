@@ -8,7 +8,7 @@ socket.on("message", (message) => {
 
   const html = Mustache.render(messageTemplate, {
     message: message.text,
-    time: moment(message.createdAt).format("h:m a"),
+    time: moment(message.createdAt).format("d MMM, h:m a"),
   });
   messages.insertAdjacentHTML("beforeend", html);
 });
@@ -63,8 +63,11 @@ const locationMessageTemplate = document.querySelector(
   "#location-message-template"
 ).innerHTML;
 
-socket.on("locationMessage", (url) => {
-  const html = Mustache.render(locationMessageTemplate, { url });
+socket.on("locationMessage", (message) => {
+  const html = Mustache.render(locationMessageTemplate, {
+    url: message.text,
+    time: moment(message.createdAt).format("d MMM, h:m a"),
+  });
   messages.insertAdjacentHTML("beforeend", html);
-  console.log(url);
+  console.log(message);
 });
