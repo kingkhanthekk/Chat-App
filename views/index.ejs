@@ -18,7 +18,7 @@
 
     <script id="message-template" type="text/html">
       <div>
-        <p>{{message}}</p>
+        <p>{{time}} - {{message}}</p>
       </div>
     </script>
 
@@ -29,6 +29,7 @@
     </script>
 
     <script src="https://unpkg.com/mustache@latest"></script>
+    <script src="https://unpkg.com/moment@latest"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
   </body>

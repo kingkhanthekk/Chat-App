@@ -6,7 +6,10 @@ const messageTemplate = document.querySelector("#message-template").innerHTML;
 socket.on("message", (message) => {
   console.log(message);
 
-  const html = Mustache.render(messageTemplate, { message });
+  const html = Mustache.render(messageTemplate, {
+    message: message.text,
+    time: moment(message.createdAt).format("h:m a"),
+  });
   messages.insertAdjacentHTML("beforeend", html);
 });
 
