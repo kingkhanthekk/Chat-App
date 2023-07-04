@@ -7,12 +7,22 @@
   </head>
   <body>
     <h1>Chat App</h1>
+
+    <div id="messages"></div>
+
     <form action="">
       <input type="text" name="message" placeholder="Message" />
       <button type="submit">Send</button>
     </form>
     <button id="share-location">Share Location</button>
 
+    <script id="message-template" type="text/html">
+      <div>
+        <p>This is a message</p>
+      </div>
+    </script>
+
+    <script src="https://unpkg.com/mustache@latest"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
   </body>
