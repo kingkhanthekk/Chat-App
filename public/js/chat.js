@@ -3,6 +3,8 @@ const socket = io();
 const messages = document.querySelector("#messages");
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 
+const { name, room } = Qs.parse(location.search, { ignoreQueryPrefix: true });
+
 socket.on("message", (message) => {
   console.log(message);
 
