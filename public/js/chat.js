@@ -55,3 +55,13 @@ locationButton.addEventListener("click", () => {
     });
   });
 });
+
+const locationMessageTemplate = document.querySelector(
+  "#location-message-template"
+).innerHTML;
+
+socket.on("locationMessage", (url) => {
+  const html = Mustache.render(locationMessageTemplate, { url });
+  messages.insertAdjacentHTML("beforeend", html);
+  console.log(url);
+});
