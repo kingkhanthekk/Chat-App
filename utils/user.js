@@ -16,7 +16,7 @@ const addUser = ({ id, username, room }) => {
 
   if (userExist) {
     return {
-      error: "Username already exist.",
+      error: "Username already exists.",
     };
   }
 
@@ -39,5 +39,13 @@ const getUser = (id) => {
 };
 
 const getUsersInRoom = (room) => {
+  room.trim().toLowerCase();
   return users.filter((user) => user.room === room);
+};
+
+module.exports = {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
 };
