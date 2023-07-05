@@ -80,5 +80,16 @@ socket.on("locationMessage", (message) => {
     time: moment(message.createdAt).format("d MMM, h:m a"),
   });
   messages.insertAdjacentHTML("beforeend", html);
-  console.log(message);
+});
+
+const sidebarTemplate = document.querySelector("#sidebar-template").innerHTML;
+const sidebar = document.querySelector("#sidebar");
+
+socket.on("roomUsers", ({ room, users }) => {
+  const html = Mustache.render(sidebarTemplate, {
+    room,
+    users,
+  });
+
+  sidebar.innerHTML = html;
 });
