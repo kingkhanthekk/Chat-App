@@ -15,9 +15,8 @@ socket.emit("join", { username, room }, (error) => {
 });
 
 socket.on("message", (message) => {
-  console.log(message);
-
   const html = Mustache.render(messageTemplate, {
+    username: message.username,
     message: message.text,
     time: moment(message.createdAt).format("d MMM, h:m a"),
   });
@@ -76,6 +75,7 @@ const locationMessageTemplate = document.querySelector(
 
 socket.on("locationMessage", (message) => {
   const html = Mustache.render(locationMessageTemplate, {
+    username: message.username,
     url: message.text,
     time: moment(message.createdAt).format("d MMM, h:m a"),
   });
